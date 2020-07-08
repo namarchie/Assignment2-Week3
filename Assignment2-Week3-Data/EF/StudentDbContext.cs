@@ -1,5 +1,6 @@
 ﻿using Assignment2_Week3_Data.Configurations;
 using Assignment2_Week3_Data.Entities;
+using Assignment2_Week3_Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Assignment2_Week3_Data.EF
 {
-    class StudentDbContext : DbContext
+    public class StudentDbContext : DbContext
     {
         public StudentDbContext(DbContextOptions options) : base(options)
         {
@@ -18,6 +19,7 @@ namespace Assignment2_Week3_Data.EF
             modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
             modelBuilder.ApplyConfiguration(new DistrictConfiguration());
             modelBuilder.ApplyConfiguration(new CommuneConfiguration());
+            modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
         

@@ -14,10 +14,10 @@ namespace Assignment2_Week3_Data.Configurations
             builder.ToTable("Students");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired(true);
-            builder.Property(x => x.Dob).IsRequired(true);
+            builder.Property(x => x.Yob).IsRequired(true);
             builder.Property(x => x.Phone);
             builder.Property(x => x.Address).IsRequired();
-            builder.Property(x => x.AddressFull).IsRequired();
+            //builder.Property(x => x.AddressFull).IsRequired();
         }
     }
 }

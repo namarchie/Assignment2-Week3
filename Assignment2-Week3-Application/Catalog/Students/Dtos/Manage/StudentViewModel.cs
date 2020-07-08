@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment2_Week3_Data.Entities
+namespace Assignment2_Week3_Application.Catalog.Students.Dtos.Manage
 {
-    public class Student
+    public class StudentViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,8 +12,5 @@ namespace Assignment2_Week3_Data.Entities
         public int Phone { get; set; }
         public string Address { get; set; }
         //public string AddressFull { get; set; }
-        public int CommuneId { get; set; }
-
-
     }
 }

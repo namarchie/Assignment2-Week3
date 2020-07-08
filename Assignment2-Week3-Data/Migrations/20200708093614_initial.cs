@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Assignment2_Week3_Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,13 +26,10 @@ namespace Assignment2_Week3_Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    Dob = table.Column<DateTime>(nullable: false),
+                    Yob = table.Column<int>(nullable: false),
                     Phone = table.Column<int>(nullable: false),
                     Address = table.Column<string>(nullable: false),
-                    AddressFull = table.Column<string>(nullable: false),
-                    CommuneId = table.Column<int>(nullable: false),
-                    DistrictId = table.Column<int>(nullable: false),
-                    ProvinceId = table.Column<int>(nullable: false)
+                    CommuneId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

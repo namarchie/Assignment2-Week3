@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Assignment2_Week3.Models;
+using Assginment2_Week3_Api.Models;
 
-namespace Assignment2_Week3.Controllers
+namespace Assginment2_Week3_Api.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,18 +18,11 @@ namespace Assignment2_Week3.Controllers
             _logger = logger;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
-        
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Index()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return Ok("Test tiep");
         }
 
+        
     }
 }
