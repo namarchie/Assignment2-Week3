@@ -13,6 +13,8 @@ namespace Assignment2_Week3_Data.Entities
         public string Address { get; set; }
         //public string AddressFull { get; set; }
         public int CommuneId { get; set; }
+        public int DistrictId { get; set; }
+        public int ProvinceId { get; set; }
 
 
     }

@@ -326,11 +326,17 @@ namespace Assignment2_Week3_Data.Migrations
                     b.Property<int>("CommuneId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Phone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProvinceId")
                         .HasColumnType("int");
 
                     b.Property<int>("Yob")
@@ -339,35 +345,6 @@ namespace Assignment2_Week3_Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Thôn Liêu Hạ",
-                            CommuneId = 9,
-                            Name = "Hoàng Văn A",
-                            Phone = 357490115,
-                            Yob = 1998
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Xóm Đen Vâu",
-                            CommuneId = 17,
-                            Name = "Đỗ Văn B",
-                            Phone = 985471843,
-                            Yob = 1992
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Số nhà 68",
-                            CommuneId = 22,
-                            Name = "Luyện Văn C",
-                            Phone = 785392104,
-                            Yob = 1995
-                        });
                 });
 
             modelBuilder.Entity("Assignment2_Week3_Data.Entities.Commune", b =>

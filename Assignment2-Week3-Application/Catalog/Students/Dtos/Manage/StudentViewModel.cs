@@ -6,7 +6,7 @@ namespace Assignment2_Week3_Application.Catalog.Students.Dtos.Manage
 {
     public class StudentViewModel
     {
-        public int Id { get; set; }
+        public int Id { set; get; }
         public string Name { get; set; }
         public int Yob { get; set; }
         public int Phone { get; set; }

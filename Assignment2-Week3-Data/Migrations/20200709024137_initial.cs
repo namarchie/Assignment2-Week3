@@ -29,7 +29,9 @@ namespace Assignment2_Week3_Data.Migrations
                     Yob = table.Column<int>(nullable: false),
                     Phone = table.Column<int>(nullable: false),
                     Address = table.Column<string>(nullable: false),
-                    CommuneId = table.Column<int>(nullable: false)
+                    CommuneId = table.Column<int>(nullable: false),
+                    DistrictId = table.Column<int>(nullable: false),
+                    ProvinceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

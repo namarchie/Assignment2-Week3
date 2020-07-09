@@ -56,12 +56,6 @@ namespace Assignment2_Week3_Data.Extensions
                 new Commune() { CommuneId = 26, CommuneName = "Đông Văn", DistrictId = 9 },
                 new Commune() { CommuneId = 27, CommuneName = "Đông Sơn", DistrictId = 9 }
                 );
-            modelBuilder.Entity<Student>().HasData(
-                new Student() { Id = 1, Name = "Hoàng Văn A", Yob = 1998, Address = "Thôn Liêu Hạ", Phone = 0357490115, CommuneId = 9 },
-                new Student() { Id = 2, Name = "Đỗ Văn B", Yob = 1992, Address = "Xóm Đen Vâu", Phone = 0985471843, CommuneId = 17 },
-                new Student() { Id = 3, Name = "Luyện Văn C", Yob = 1995, Address = "Số nhà 68", Phone = 0785392104, CommuneId = 22 }
-
-                );
         }
     }
 }

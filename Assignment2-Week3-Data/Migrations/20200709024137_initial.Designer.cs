@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment2_Week3_Data.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20200708093614_initial")]
+    [Migration("20200709024137_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,11 +91,17 @@ namespace Assignment2_Week3_Data.Migrations
                     b.Property<int>("CommuneId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Phone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProvinceId")
                         .HasColumnType("int");
 
                     b.Property<int>("Yob")

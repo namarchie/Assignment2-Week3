@@ -9,22 +9,17 @@ namespace Assignment2_Week3_Data.Migrations
             migrationBuilder.InsertData(
                 table: "Provinces",
                 columns: new[] { "ProvinceId", "ProvinceName" },
-                values: new object[,]
-                {
-                    { 1, "Hưng Yên" },
-                    { 2, "Nghệ An" },
-                    { 3, "Thanh Hóa" }
-                });
+                values: new object[] { 1, "Hưng Yên" });
 
             migrationBuilder.InsertData(
-                table: "Students",
-                columns: new[] { "Id", "Address", "CommuneId", "Name", "Phone", "Yob" },
-                values: new object[,]
-                {
-                    { 1, "Thôn Liêu Hạ", 9, "Hoàng Văn A", 357490115, 1998 },
-                    { 2, "Xóm Đen Vâu", 17, "Đỗ Văn B", 985471843, 1992 },
-                    { 3, "Số nhà 68", 22, "Luyện Văn C", 785392104, 1995 }
-                });
+                table: "Provinces",
+                columns: new[] { "ProvinceId", "ProvinceName" },
+                values: new object[] { 2, "Nghệ An" });
+
+            migrationBuilder.InsertData(
+                table: "Provinces",
+                columns: new[] { "ProvinceId", "ProvinceName" },
+                values: new object[] { 3, "Thanh Hóa" });
 
             migrationBuilder.InsertData(
                 table: "Districts",
@@ -213,21 +208,6 @@ namespace Assignment2_Week3_Data.Migrations
                 table: "Communes",
                 keyColumn: "CommuneId",
                 keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Students",
-                keyColumn: "Id",
-                keyValue: 3);
 
             migrationBuilder.DeleteData(
                 table: "Districts",

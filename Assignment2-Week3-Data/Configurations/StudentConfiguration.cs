@@ -17,6 +17,10 @@ namespace Assignment2_Week3_Data.Configurations
             builder.Property(x => x.Yob).IsRequired(true);
             builder.Property(x => x.Phone);
             builder.Property(x => x.Address).IsRequired();
+            builder.Property(x => x.CommuneId).IsRequired();
+            builder.Property(x => x.DistrictId).IsRequired();
+            builder.Property(x => x.ProvinceId).IsRequired();
+
             //builder.Property(x => x.AddressFull).IsRequired();
         }
     }
