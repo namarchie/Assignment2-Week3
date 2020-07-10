@@ -8,5 +8,6 @@ namespace Assignment2_Week3_Application.Catalog.Students.Dtos.Manage
     public class GetStudentPagingRequest : PagingRequestBase
     {
         public string Keyword { set; get; }
+
     }
 }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Assignment2-Week3\Assignment2-Week3.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+
 </Project>

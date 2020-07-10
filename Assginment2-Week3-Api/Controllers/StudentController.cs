@@ -18,6 +18,7 @@ namespace Assginment2_Week3_Api.Controllers
         {
             _manageStudentService = manageStudentService;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -49,5 +50,14 @@ namespace Assginment2_Week3_Api.Controllers
                 return BadRequest();
             return Ok();
         }
+        [HttpDelete("{studentId}")]
+        public async Task<IActionResult> Delete(int studentId)
+        {
+            var affected = await _manageStudentService.Delete(studentId);
+            if (affected == 0)
+                return BadRequest();
+            return Ok();
+        }
+
     }
 }

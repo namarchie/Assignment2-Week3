@@ -59,7 +59,7 @@ namespace Assignment2_Week3_Application.Catalog.Students
 
         }
 
-        public async Task<List<StudentViewModel>> GetAll()
+        public async Task<PagedResult<StudentViewModel>> GetAll()
         {
             var student =  _context.Students.Select(x => new StudentViewModel()
             {
@@ -69,9 +69,14 @@ namespace Assignment2_Week3_Application.Catalog.Students
                 Phone = x.Phone,
                 Address = x.Address,
             });
+            int totalRow = await student.CountAsync();
+            var pageResult = new PagedResult<StudentViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = await student.ToListAsync()
+            };
+            return pageResult;
 
-
-            return await student.ToListAsync();
         }
 
         public async Task<PagedResult<StudentViewModel>> GetAllPaging(GetStudentPagingRequest request)
