@@ -23,19 +23,19 @@ namespace Assignment2_Week3_Application.Catalog.Students
         }
         public async Task<int> Create(StudentCreateRequest request)
         {
-            var province = _context.Provinces.Find(request.ProvinceId);
-            var commune = _context.Communes.Find(request.CommuneId);
-            var district = _context.Districts.Find(request.DistrictId);
-            
+            var province = _context.Provinces.Find(request.ProvinceName);
+            var commune = _context.Communes.Find(request.CommuneName);
+            var district = _context.Districts.Find(request.DistrictName);
+
             var student = new Student()
             {
                 Name = request.Name,
                 Yob = request.Yob,
-                Address = request.Address + ", " + commune.CommuneName + ", " +  district.DistrictName + ", " + province.ProvinceName ,
+                Address = request.Address + ", " + request.CommuneName + ", " + request.DistrictName + ", " + request.ProvinceName,
                 Phone = request.Phone,
-                CommuneId = request.CommuneId,
-                DistrictId = request.DistrictId,
-                ProvinceId = request.ProvinceId
+                CommuneId = commune.CommuneId,
+                DistrictId = district.DistrictId,
+                ProvinceId = province.ProvinceId
             };
             _context.Students.Add(student);
              await _context.SaveChangesAsync();

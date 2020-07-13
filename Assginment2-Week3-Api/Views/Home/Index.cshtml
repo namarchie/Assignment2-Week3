@@ -88,7 +88,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
-                            <select class="col-lg-8 form-control-file" name="Province">
+                            <select class="col-lg-8 form-control-file" name="ProvinceName">
                                 @foreach (var item in ViewBag.province.Items)
                                 {
                                     <option>@item.ProvinceName</option>
@@ -99,7 +99,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
-                            <select class="col-lg-8 form-control-file" name="District">
+                            <select class="col-lg-8 form-control-file" name="DistrictName">
                                 @foreach (var item in ViewBag.district.Items)
                                 {
                                     <option>@item.DistrictName</option>
@@ -109,7 +109,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
-                            <select class="col-lg-8 form-control-file" name="Commune">
+                            <select class="col-lg-8 form-control-file" name="CommuneName">
                                 @foreach (var item in ViewBag.commune.Items)
                                 {
                                     <option>@item.CommuneName</option>
