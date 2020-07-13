@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Assginment2_Week3_Api.Services;
 using Assignment2_Week3_Application.Catalog.Students;
 using Assignment2_Week3_Data.EF;
 using Microsoft.AspNetCore.Builder;
@@ -30,7 +31,7 @@ namespace Assginment2_Week3_Api
         {
             services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StudentDatabase")));
             services.AddControllersWithViews();
-            services.AddTransient<IManageStudentService, ManageStudentService>();
+            services.AddTransient<IStudentService, StudentService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Student Solution", Version = "v1" });

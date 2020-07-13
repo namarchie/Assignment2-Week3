@@ -9,23 +9,35 @@ using Assginment2_Week3_Api.Models;
 using Assignment2_Week3_Application.Catalog.Students.Dtos.Manage;
 using Assignment2_Week3_Application.Catalog.Students;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Assginment2_Week3_Api.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace Assginment2_Week3_Api.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
+        //private readonly IStudentService _manageStudentService;
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(IStudentService manageStudentService)
+        //{
+        //    _manageStudentService = manageStudentService;
+        //}
+        private readonly IConfiguration _configuration;
+        private readonly IStudentService _studentService;
+        public HomeController (IConfiguration configuration, IStudentService studentService)
         {
-            _logger = logger;
+
+            _configuration = configuration;
+            _studentService = studentService;
+
         }
-        private readonly IManageStudentService _manageStudentService;
-        public HomeController(IManageStudentService manageStudentService)
-        {
-            _manageStudentService = manageStudentService;
-        }
-        public async Task<IActionResult> Index(string keyword , int pageIndex = 1 , int pageSize = 10)
+        [HttpGet]
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
             var request = new GetStudentPagingRequest()
             {
@@ -33,10 +45,23 @@ namespace Assginment2_Week3_Api.Controllers
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
-            var data = await _manageStudentService.GetAllPaging(request);
+            var data = await _studentService.GetStudentsPagings(request);
+            ViewBag.province = await _studentService.GetAllProvince();
+            ViewBag.district = await _studentService.GetAllDistrict();
+            ViewBag.commune = await _studentService.GetAllCommune();
             return View(data);
         }
+        [HttpPost]
+        public async Task<IActionResult> Create( StudentCreateRequest request)
+        {
+            var productId = await _studentService.Create(request);
+            if (productId == 0)
+                return BadRequest();
 
-        
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

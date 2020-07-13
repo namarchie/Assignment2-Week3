@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace Assignment2_Week3_Application.Catalog.Students
 {
-    public class ManageStudentService : IManageStudentService
+    public class StudentService : IStudentService
     {
         private readonly StudentDbContext _context;
-        public ManageStudentService(StudentDbContext context)
+        public StudentService(StudentDbContext context)
         {
             _context = context;
         }
@@ -26,19 +26,12 @@ namespace Assignment2_Week3_Application.Catalog.Students
             var province = _context.Provinces.Find(request.ProvinceId);
             var commune = _context.Communes.Find(request.CommuneId);
             var district = _context.Districts.Find(request.DistrictId);
-            //var district = new District()
-            //{
-            //    DistrictId = request.DistrictId
-            //};
-            //var commune = new Commune()
-            //{
-            //    CommuneId = request.CommuneId
-            //};
+            
             var student = new Student()
             {
                 Name = request.Name,
                 Yob = request.Yob,
-                Address = request.Address + ", " + province.ProvinceName + ", " +  district.DistrictName + ", " + commune.CommuneName ,
+                Address = request.Address + ", " + commune.CommuneName + ", " +  district.DistrictName + ", " + province.ProvinceName ,
                 Phone = request.Phone,
                 CommuneId = request.CommuneId,
                 DistrictId = request.DistrictId,
@@ -79,7 +72,7 @@ namespace Assignment2_Week3_Application.Catalog.Students
 
         }
 
-        public async Task<PagedResult<StudentViewModel>> GetAllPaging(GetStudentPagingRequest request)
+        public async Task<PagedResult<StudentViewModel>> GetStudentsPagings(GetStudentPagingRequest request)
         {
             var student = _context.Students.Select(x => new StudentViewModel()
             {
@@ -137,6 +130,58 @@ namespace Assignment2_Week3_Application.Catalog.Students
             
 
         }
+
+        public async Task<PagedResult<ProvinceViewModel>> GetAllProvince()
+        {
+            var province = _context.Provinces.Select(x => new ProvinceViewModel()
+            {
+                ProvinceId = x.ProvinceId,
+                ProvinceName = x.ProvinceName,
+            }) ;
+            int totalRow = await province.CountAsync();
+            var pageResult = new PagedResult<ProvinceViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = await province.ToListAsync()
+            };
+            return pageResult;
+        }
+
+        public async Task<PagedResult<DistrictViewModel>> GetAllDistrict()
+        {
+            var district = _context.Districts.Select(x => new DistrictViewModel()
+            {
+                DistrictId = x.DistrictId,
+                DistrictName = x.DistrictName,
+                ProvinceId = x.ProvinceId,
+            });
+            int totalRow = await district.CountAsync();
+            var pageResult = new PagedResult<DistrictViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = await district.ToListAsync()
+            };
+            return pageResult;
+        }
+
+        public async Task<PagedResult<CommuneViewModel>> GetAllCommune()
+        {
+            var commune = _context.Communes.Select(x => new CommuneViewModel()
+            {
+                CommuneId = x.CommuneId,
+                CommuneName = x.CommuneName,
+                DistrictId = x.DistrictId,
+            }) ;
+            int totalRow = await commune.CountAsync();
+            var pageResult = new PagedResult<CommuneViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = await commune.ToListAsync()
+            };
+            return pageResult;
+        }
+
+
 
         //Task<List<StudentViewModel>> IManageStudentService.GetAll()
         //{

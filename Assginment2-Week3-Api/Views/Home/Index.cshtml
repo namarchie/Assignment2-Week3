@@ -1,5 +1,9 @@
-﻿@using Assignment2_Week3_Application.Dtos;
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Assignment2_Week3_Application.Dtos;
 @model PagedResult<Assignment2_Week3_Application.Catalog.Students.Dtos.Manage.StudentViewModel>;
+@{
+    var stt = 0;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,18 +15,18 @@
     <div class="container">
         <h2>Student management</h2>
         <div class="row col-lg-10">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Student name: </label>
-            <input class="col-lg-4 mr-2" class="form-control-file" id="exampleFormControlFile1">
-            <button class="col-lg-1" type="button" class="btn btn-primary">Search</button>
+            <label for="exampleFormControlSelect1" class="col-lg-2 form-control-file">Student name: </label>
+            <input class="col-lg-4 mr-2 form-control-file">
+            <button class="col-lg-1 btn btn-primary" type="button">Search</button>
         </div>
         <br>
         <div class="row" style="margin: unset">
             <div class="row col-lg-6">
 
-                <button class="col-lg-5 mr-2" type="button" class="btn btn-primary">Sort by Name</button>
-                <button class="col-lg-5" type="button" class="btn btn-primary">Sort by Yob</button>
+                <button class="col-lg-5 mr-2 btn btn-primary" type="button">Sort by Name</button>
+                <button class="col-lg-5 btn btn-primary" type="button">Sort by Yob</button>
             </div>
-            <button class="col-lg-2 offset-lg-4" type="button" class="btn btn-primary">Add new</button>
+            <button class="col-lg-2 offset-lg-4 btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Add new</button>
 
         </div>
         <table class="table table-bordered mt-3">
@@ -37,21 +41,96 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach (var item in Model.Items)
                 {
+
+
                     <tr>
-                        <td>@item.Id</td>
+                        <td>@(++stt)</td>
                         <td>@item.Name</td>
                         <td>@item.Yob</td>
                         <td>@item.Address</td>
                         <td>@item.Phone</td>
-                        <td>Edit Delete</td>
+                        <td><button data-toggle="modal" data-target="#exampleModal">Edit</button> <button>Delete</button></td>
                     </tr>
                 }
 
 
             </tbody>
         </table>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/Home/Create">
+                    <div class="modal-body">
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file" >Name: </label>
+                            <input class="col-lg-8 form-control-file" name="Name">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Year of birth: </label>
+                            <input class="col-lg-8 form-control-file " name="Yob">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
+                            <input class="col-lg-8 form-control-file"name="Address">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
+                            <select class="col-lg-8 form-control-file" name="Province">
+                                @foreach (var item in ViewBag.province.Items)
+                                {
+                                    <option>@item.ProvinceName</option>
+                                }
+
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
+                            <select class="col-lg-8 form-control-file" name="District">
+                                @foreach (var item in ViewBag.district.Items)
+                                {
+                                    <option>@item.DistrictName</option>
+                                }
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
+                            <select class="col-lg-8 form-control-file" name="Commune">
+                                @foreach (var item in ViewBag.commune.Items)
+                                {
+                                    <option>@item.CommuneName</option>
+                                }
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Phone: </label>
+                            <input class="col-lg-8 form-control-file" name="Phone">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

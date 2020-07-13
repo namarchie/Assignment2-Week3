@@ -13,8 +13,8 @@ namespace Assginment2_Week3_Api.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly IManageStudentService _manageStudentService;
-        public StudentController(IManageStudentService manageStudentService)
+        private readonly IStudentService _manageStudentService;
+        public StudentController(IStudentService manageStudentService)
         {
             _manageStudentService = manageStudentService;
         }
