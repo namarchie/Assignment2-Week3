@@ -48,11 +48,11 @@
 
                     <tr>
                         <td>@(++stt)</td>
-                        <td>@item.Name</td>
+                        <td>@item.Name </td>
                         <td>@item.Yob</td>
                         <td>@item.Address</td>
                         <td>@item.Phone</td>
-                        <td><button data-toggle="modal" data-target="#exampleModal">Edit</button> <button>Delete</button></td>
+                        <td><button data-toggle="modal" data-id="@item.Id" data-target="#exampleModal1">Edit</button> <button data="@item.Name" action="/Home/Delete" type="submit">Delete</button></td>
                     </tr>
                 }
 
@@ -72,7 +72,7 @@
                 <form method="post" action="/Home/Create">
                     <div class="modal-body">
                         <div class="row col-lg-12">
-                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file" >Name: </label>
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
                             <input class="col-lg-8 form-control-file" name="Name">
                         </div>
                         <br />
@@ -83,7 +83,79 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
-                            <input class="col-lg-8 form-control-file"name="Address">
+                            <input class="col-lg-8 form-control-file border=" 4px"" name="Address">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
+                            <select class="col-lg-8 form-control-file" name="ProvinceName">
+                                @foreach (var item in ViewBag.province.Items)
+                                {
+                                    <option>@item.ProvinceName</option>
+                                }
+
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
+                            <select class="col-lg-8 form-control-file" name="DistrictName">
+                                @foreach (var item in ViewBag.district.Items)
+                                {
+                                    <option>@item.DistrictName</option>
+                                }
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
+                            <select class="col-lg-8 form-control-file" name="CommuneName">
+                                @foreach (var item in ViewBag.commune.Items)
+                                {
+                                    <option>@item.CommuneName</option>
+                                }
+                            </select>
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Phone: </label>
+                            <input class="col-lg-8 form-control-file" name="Phone">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="put" action="Update">
+                    <div class="modal-body">
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
+                            <input class="col-lg-8 form-control-file" name="Name">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Year of birth: </label>
+                            <input class="col-lg-8 form-control-file " name="Yob">
+                        </div>
+                        <br />
+                        <div class="row col-lg-12">
+                            <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
+                            <input class="col-lg-8 form-control-file border=" 4px"" name="Address">
                         </div>
                         <br />
                         <div class="row col-lg-12">

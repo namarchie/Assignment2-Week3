@@ -61,6 +61,22 @@ namespace Assginment2_Week3_Api.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete( int Id)
+        {
+            var student = await _studentService.Delete(Id);
+            if (student == 0)
+                return BadRequest();
+            return Ok(student);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(StudentUpdateRequest request)
+        {
+            var productId = await _studentService.Update(request);
+            if (productId == 0)
+                return BadRequest();
+            return Ok(productId);
+        }
 
 
     }

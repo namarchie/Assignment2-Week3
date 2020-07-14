@@ -23,9 +23,9 @@ namespace Assignment2_Week3_Application.Catalog.Students
         }
         public async Task<int> Create(StudentCreateRequest request)
         {
-            var province = _context.Provinces.Find(request.ProvinceName);
-            var commune = _context.Communes.Find(request.CommuneName);
-            var district = _context.Districts.Find(request.DistrictName);
+            var province =  _context.Provinces.First(x => x.ProvinceName == request.ProvinceName);
+            var commune = _context.Communes.First(x => x.CommuneName == request.CommuneName);
+            var district = _context.Districts.First(x => x.DistrictName == request.DistrictName);
 
             var student = new Student()
             {
@@ -33,9 +33,9 @@ namespace Assignment2_Week3_Application.Catalog.Students
                 Yob = request.Yob,
                 Address = request.Address + ", " + request.CommuneName + ", " + request.DistrictName + ", " + request.ProvinceName,
                 Phone = request.Phone,
-                CommuneId = commune.CommuneId,
                 DistrictId = district.DistrictId,
-                ProvinceId = province.ProvinceId
+                ProvinceId = province.ProvinceId,
+                CommuneId = commune.CommuneId
             };
             _context.Students.Add(student);
              await _context.SaveChangesAsync();
@@ -116,19 +116,19 @@ namespace Assignment2_Week3_Application.Catalog.Students
 
         public async Task<int> Update(StudentUpdateRequest request)
         {
-            var province = _context.Provinces.Find(request.ProvinceId);
-            var district = _context.Districts.Find(request.DistrictId);
-            var commune = _context.Communes.Find(request.CommuneId);
+            var province = _context.Provinces.First(x => x.ProvinceName == request.ProvinceName);
+            var district = _context.Districts.First(x => x.DistrictName == request.DistrictName);
+            var commune = _context.Communes.First(x => x.CommuneName == request.CommuneName);
             var student = await _context.Students.FindAsync(request.Id);
             if (student == null) throw new StudentException("Can not find the student");
             student.Name = request.Name;
             student.Phone = request.Phone;
             student.Yob = request.Yob;
             student.Address = request.Address + ", " + province.ProvinceName + ", " + district.DistrictName + ", " + commune.CommuneName;
+            student.CommuneId = commune.CommuneId;
+            student.DistrictId = district.DistrictId;
+            student.ProvinceId = province.ProvinceId;
             return await _context.SaveChangesAsync();
-
-            
-
         }
 
         public async Task<PagedResult<ProvinceViewModel>> GetAllProvince()
