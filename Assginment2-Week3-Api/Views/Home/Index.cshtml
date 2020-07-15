@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <title>Student management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="~/js/site.js"></script>
 </head>
 <body>
     <div class="container">
@@ -52,7 +53,7 @@
                         <td>@item.Yob</td>
                         <td>@item.Address</td>
                         <td>@item.Phone</td>
-                        <td><button data-toggle="modal" data-id="@item.Id" data-target="#exampleModal1">Edit</button> <button data="@item.Name" action="/Home/Delete" type="submit">Delete</button></td>
+                        <td><button data-toggle="modal" type="button" onclick="name=@item.Id" name="Id" id="Id" data-target="#exampleModal1">Edit</button> <button data="@item.Name" action="/Home/Delete/@item.Id" type="submit">Delete</button></td>
                     </tr>
                 }
 
@@ -73,7 +74,7 @@
                     <div class="modal-body">
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
-                            <input class="col-lg-8 form-control-file" name="Name">
+                            <input class="col-lg-8 form-control-file " name="Name">
                         </div>
                         <br />
                         <div class="row col-lg-12">
@@ -141,26 +142,27 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="put" action="Update">
+                <form method="get" action="/Home/Update" >
                     <div class="modal-body">
                         <div class="row col-lg-12">
+                            
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
-                            <input class="col-lg-8 form-control-file" name="Name">
+                            <input class="col-lg-8 form-control-file" name="Name" id="Name" >
                         </div>
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Year of birth: </label>
-                            <input class="col-lg-8 form-control-file " name="Yob">
+                            <input class="col-lg-8 form-control-file " name="Yob" id="Yob">
                         </div>
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
-                            <input class="col-lg-8 form-control-file border=" 4px"" name="Address">
+                            <input class="col-lg-8 form-control-file border=" 4px"" name="Address" id="Address">
                         </div>
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
-                            <select class="col-lg-8 form-control-file" name="ProvinceName">
+                            <select class="col-lg-8 form-control-file" name="ProvinceName" id="ProvinceName">
                                 @foreach (var item in ViewBag.province.Items)
                                 {
                                     <option>@item.ProvinceName</option>
@@ -171,7 +173,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
-                            <select class="col-lg-8 form-control-file" name="DistrictName">
+                            <select class="col-lg-8 form-control-file" name="DistrictName" id="DistrictName">
                                 @foreach (var item in ViewBag.district.Items)
                                 {
                                     <option>@item.DistrictName</option>
@@ -181,7 +183,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
-                            <select class="col-lg-8 form-control-file" name="CommuneName">
+                            <select class="col-lg-8 form-control-file" name="CommuneName" id="CommuneName">
                                 @foreach (var item in ViewBag.commune.Items)
                                 {
                                     <option>@item.CommuneName</option>
@@ -191,7 +193,7 @@
                         <br />
                         <div class="row col-lg-12">
                             <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Phone: </label>
-                            <input class="col-lg-8 form-control-file" name="Phone">
+                            <input class="col-lg-8 form-control-file" name="Phone" id="Phone">
                         </div>
                     </div>
                     <div class="modal-footer">

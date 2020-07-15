@@ -1,4 +1,34 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿events: function () {
+    $(document).ready(function () {
 
-// Write your JavaScript code.
+        $('.edit-student').off('click').on('click', function () {
+            $('#exampleModal').modal('show');
+            var id = $(this).data('id');
+            //var idadd = $(this).data('address');
+
+            $.ajax({
+                url: "/Home/GetStudent",
+                data: {
+                    id: id,
+                    //idAddress: idadd
+                },
+                dataType: "json",
+                type: "GET",
+                success: function (response) {
+                    var data = response.student;
+                    //var address = response.address;
+                    $('#Id').val(Id);
+                    //$('#IdAddress').val(idadd);
+                    $('#Address').val(data.Address);
+                    $('#Name').val(data.Name);
+                    $('#Yob').val(data.Yob);
+                    $('#Phone').val(data.Phone);
+                    //student.loadAddress(address.id, address.quanHuyenID, address.tinhThanhID);
+                }
+            });
+
+
+        });
+
+
+    });
