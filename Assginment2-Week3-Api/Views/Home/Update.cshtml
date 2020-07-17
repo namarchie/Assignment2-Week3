@@ -1,0 +1,89 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Assignment2_Week3_Application.Catalog.Students.Dtos.Manage.StudentViewModel
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Update</title>
+    </head>
+    <body>
+        @*<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>*@
+                    <form method="post" action="/Home/Update">
+                        
+                        <div class="modal-body">
+                            <div class="row col-lg-12">
+
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
+                                <input class="col-lg-8 form-control-file" name="Id" value="@Model.Id" type="hidden">
+                                <input class="col-lg-8 form-control-file" name="Name" value="@Model.Name">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Year of birth: </label>
+                                <input class="col-lg-8 form-control-file " name="Yob" value="@Model.Yob">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
+                                <input class="col-lg-8 form-control-file border=" 4px"" name="Address" value="@Model.Address">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
+                                <select class="col-lg-8 form-control-file" name="ProvinceName" >
+                                    @foreach (var a in ViewBag.province.Items)
+                                    {
+                                        
+                                        <option>@a.ProvinceName</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
+                                <select class="col-lg-8 form-control-file" name="DistrictName">
+                                    @foreach (var a in ViewBag.district.Items)
+                                    {
+                                        <option>@a.DistrictName</option>
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
+                                <select class="col-lg-8 form-control-file" name="CommuneName" >
+                                    @foreach (var a in ViewBag.commune.Items)
+                                    {
+                                        <option>@a.CommuneName</option>
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Phone: </label>
+                                <input class="col-lg-8 form-control-file" name="Phone" value="@Model.Phone">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/Home/Index" >Về trang chủ</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            
+                        </div>
+                    </form>
+                @*</div>
+            </div>
+
+        </div>*@
+    </body>
+</html>

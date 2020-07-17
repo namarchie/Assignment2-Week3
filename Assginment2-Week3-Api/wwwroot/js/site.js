@@ -2,7 +2,7 @@
     $(document).ready(function () {
 
         $('.edit-student').off('click').on('click', function () {
-            $('#exampleModal').modal('show');
+            $('#exampleModal1').modal('show');
             var id = $(this).data('id');
             //var idadd = $(this).data('address');
 
