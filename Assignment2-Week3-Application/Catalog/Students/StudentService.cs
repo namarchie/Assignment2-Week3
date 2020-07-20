@@ -72,7 +72,7 @@ namespace Assignment2_Week3_Application.Catalog.Students
 
         }
 
-        public async Task<PagedResult<StudentViewModel>> GetStudentsPagings(GetStudentPagingRequest request)
+        public async Task<PagedResult<StudentViewModel>> GetStudentsPagings(GetStudentPagingRequest request , int sort)
         {
             var student = _context.Students.Select(x => new StudentViewModel()
             {
@@ -85,6 +85,14 @@ namespace Assignment2_Week3_Application.Catalog.Students
             if (!string.IsNullOrEmpty(request.Keyword))
             {
                 student = student.Where(p => p.Name.Contains(request.Keyword));
+            }
+            if (sort==1)
+            {
+                student = student.OrderBy(x => x.Yob);
+            }
+            if (sort == 2)
+            {
+                student = student.OrderBy(x => x.Name);
             }
             int totalRow = await student.CountAsync();
             var data = student.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize);
@@ -99,12 +107,12 @@ namespace Assignment2_Week3_Application.Catalog.Students
 
         }
 
-        public async Task<StudentViewModel> GetById(int studentId)
+        public async Task<StudentViewModel> GetById(int Id)
         {
-            var student = await _context.Students.FindAsync(studentId);
+            var student = await _context.Students.FindAsync(Id);
             var studentViewModel = new StudentViewModel()
             {
-                Id = studentId,
+                Id = Id,
                 Name = student.Name,
                 Yob = student.Yob,
                 Address = student.Address,
@@ -124,6 +132,12 @@ namespace Assignment2_Week3_Application.Catalog.Students
             student.Name = request.Name;
             student.Phone = request.Phone;
             student.Yob = request.Yob;
+            //string[] arr = request.Address.Split(',');
+            //string address = null;
+            //for (int i = 0; i < arr.Length-3; i++)
+            //{
+            //    address += arr[i] + ",";
+            //}
             student.Address = request.Address + ", " + province.ProvinceName + ", " + district.DistrictName + ", " + commune.CommuneName;
             student.CommuneId = commune.CommuneId;
             student.DistrictId = district.DistrictId;
@@ -180,6 +194,9 @@ namespace Assignment2_Week3_Application.Catalog.Students
             };
             return pageResult;
         }
+        vfdnvdnvdsdfgvbadhgadfh
+    
+
 
 
 

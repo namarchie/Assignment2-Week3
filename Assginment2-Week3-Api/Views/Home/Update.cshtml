@@ -1,57 +1,89 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Update student</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Update student</h2>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <input class="col-lg-4 mr-2" class="form-control-file" id="exampleFormControlFile1">
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Assignment2_Week3_Application.Catalog.Students.Dtos.Manage.StudentViewModel
 
-        </div>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <input class="col-lg-4 mr-2" class="form-control-file" id="exampleFormControlFile1">
+    <!DOCTYPE html>
 
-        </div>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <input class="col-lg-4 mr-2" class="form-control-file" id="exampleFormControlFile1">
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Update</title>
+    </head>
+    <body>
+        @*<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>*@
+                    <form method="post" action="/Home/Update">
+                        
+                        <div class="modal-body">
+                            <div class="row col-lg-12">
 
-        </div>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <select class="col-lg-4 mr-2"> </select>
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Name: </label>
+                                <input class="col-lg-8 form-control-file" name="Id" value="@Model.Id" type="hidden">
+                                <input class="col-lg-8 form-control-file" name="Name" value="@Model.Name">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Year of birth: </label>
+                                <input class="col-lg-8 form-control-file " name="Yob" value="@Model.Yob">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Address: </label>
+                                <input class="col-lg-8 form-control-file border=" 4px"" name="Address" value="@Model.Address">
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Province: </label>
+                                <select class="col-lg-8 form-control-file" name="ProvinceName" >
+                                    @foreach (var a in ViewBag.province.Items)
+                                    {
+                                        
+                                        <option>@a.ProvinceName</option>
+                                    }
 
-        </div>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <select class="col-lg-4 mr-2"> </select>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">District: </label>
+                                <select class="col-lg-8 form-control-file" name="DistrictName">
+                                    @foreach (var a in ViewBag.district.Items)
+                                    {
+                                        <option>@a.DistrictName</option>
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Commune: </label>
+                                <select class="col-lg-8 form-control-file" name="CommuneName" >
+                                    @foreach (var a in ViewBag.commune.Items)
+                                    {
+                                        <option>@a.CommuneName</option>
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row col-lg-12">
+                                <label for="exampleFormControlSelect1" class="col-lg-4 form-control-file">Phone: </label>
+                                <input class="col-lg-8 form-control-file" name="Phone" value="@Model.Phone">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/Home/Index" >Về trang chủ</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            
+                        </div>
+                    </form>
+                @*</div>
+            </div>
 
-        </div>
-        <div class="row col-lg-9 mb-4">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <select class="col-lg-4 mr-2"> </select>
-
-        </div>
-        <div class="row col-lg-9">
-            <label for="exampleFormControlSelect1" class="col-lg-2">Example select</label>
-            <input class="col-lg-4 mr-2 form-control" class="form-control-file" id="exampleFormControlFile1">
-
-        </div>
-        <div class="row col-lg-12">
-            <button class="btn btn-success col-lg-1 offset-5" type="button">Save</button>
-
-        </div>
-
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-</body>
+        </div>*@
+    </body>
 </html>

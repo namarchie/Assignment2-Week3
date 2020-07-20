@@ -17,6 +17,6 @@ namespace Assignment2_Week3_Application.Catalog.Students
         Task<PagedResult<ProvinceViewModel>> GetAllProvince();
         Task<PagedResult<DistrictViewModel>> GetAllDistrict();
         Task<PagedResult<CommuneViewModel>> GetAllCommune();
-        Task<PagedResult<StudentViewModel>> GetStudentsPagings(GetStudentPagingRequest request);
+        Task<PagedResult<StudentViewModel>> GetStudentsPagings(GetStudentPagingRequest request, int sort);
     }
 }
